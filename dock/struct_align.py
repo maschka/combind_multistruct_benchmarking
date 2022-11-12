@@ -10,7 +10,7 @@ command = ('$SCHRODINGER/utilities/structalign '
 def should_include_lig(struct):
     if "_" in struct:
         print('modeled_struct!')
-        return False
+        return True
     return True
 
 def align_successful(out_dir, struct):

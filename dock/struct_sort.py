@@ -6,7 +6,7 @@ import shutil
 def should_include_lig(struct):
     if "_" in struct:
         print('modeled_struct!')
-        return False
+        return True
     return True
 
 def split_complex(st, pdb_id):
