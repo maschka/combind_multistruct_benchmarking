@@ -16,9 +16,9 @@ mcss_version = 'mcss16'
 shape_version = 'pharm_max'
 ifp_version = 'rd1'
 
-# @click.group()
-# def main():
-    # pass
+@click.group()
+def main():
+    pass
 
 
 from subprocess import run
@@ -59,10 +59,12 @@ def struct_sort(structs):
 
 
 
-# @main.command()
+
 # @click.argument('docking', default)
 # @click.argument('crystal', default=)
-def rmsd_all(docking='docking/*/*_pv.maegz', crystal='structures/ligands/*_lig_to_*.mae'):
+# changed crystal path - 11/14 - john 
+@main.command()
+def rmsd_all(docking='docking/*/*_pv.maegz', crystal='structures/ligands/*_lig.mae'):
     """
     Compute rmsd of docked poses to a reference pose.
 
@@ -76,7 +78,7 @@ def rmsd_all(docking='docking/*/*_pv.maegz', crystal='structures/ligands/*_lig_t
     for the reference poses it is the part of the basename before '_lig'.
     """
     from dock.dock import rmsd
-
+    print(crystal)
     docking = glob(docking)
     crystal = glob(crystal)
 
