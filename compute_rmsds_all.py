@@ -64,7 +64,7 @@ def struct_sort(structs):
 # @click.argument('crystal', default=)
 # changed crystal path - 11/14 - john 
 @main.command()
-def rmsd_all(docking='docking/*/*_pv.maegz', crystal='structures/ligands/*_lig.mae'):
+def rmsd_all(docking='docking/*/*_pv.maegz', crystal='structures/ligands/*_lig_to_*.mae'):
     """
     Compute rmsd of docked poses to a reference pose.
 
