@@ -45,7 +45,7 @@ def struct_sort(structs):
         #using unrotated query here. makes it easier to align everythin later.
 	# john 11/13 changed to merged.mae for test 
         # opt_complex = 'structures/aligned/{}/{}_query.mae'.format(struct, struct)
-        opt_complex = 'structures/processed/{}/{}_merged.mae'.format(struct, struct)
+        opt_complex = 'structures/processed/{}/{}_out.mae'.format(struct, struct)
         if os.path.exists(opt_complex):
             print('help')
             comp_st = next(StructureReader(opt_complex))
