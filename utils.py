@@ -60,6 +60,7 @@ def basename(path):
 
 def mp(function, unfinished, processes):
     if unfinished:
+        print(unfinished)
         with Pool(processes=processes) as pool:
             x = pool.starmap(function, unfinished)
         return x
