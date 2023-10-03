@@ -49,7 +49,7 @@ POSES_PER_LIG   100
 POSTDOCK_NPOSE   100
 PRECISION   SP
 NENHANCED_SAMPLING   4
-POSE_RMSD 1.
+POSE_RMSD 1.5
 WRITE_RES_INTERACTION True
 '''
 
@@ -72,7 +72,7 @@ def dock(grid, ligands, root, name, enhanced,  reference, rescore, infile=None):
     if (not reference is None):
         infile = GLIDE_ES4_REF
     glide_in = '{}/{}.in'.format(root, name)
-    glide_rescore_in = '{}/rescore-{}.in'.format(root, name)
+    glide_rescore_in = '{}/rescore2-{}.in'.format(root, name)
     glide_pv = '{}/{}_pv.maegz'.format(root, name)
     glide_log = '{}/{}.log'.format(root, name)
     glide_cmd = 'glide -WAIT -LOCAL -RESTART {}'.format(os.path.basename(glide_in))

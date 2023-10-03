@@ -9,6 +9,8 @@ command = command_min
 
 #hack to not include ligands here!
 def should_include_lig(struct):
+    if 'minwith' in struct:
+        return True
     if "_" in struct:
         print('modeled_struct!')
         return False

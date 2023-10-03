@@ -172,11 +172,11 @@ def dock(grid, root, ligands, screen, processes,reference, rescore):
     ligands = [os.path.abspath(lig) for lig in ligands if 'nonames' not in lig]
     grid = os.path.abspath(grid)
     root = os.path.abspath(root)
-
+    grid_name = grid.split('/')[-2]
     mkdir(root)
     unfinished = []
     for ligand in ligands:
-        name = '{}-to-{}'.format(basename(ligand), basename(grid))
+        name = '{}-to-{}'.format(basename(ligand), grid_name)
         _root = '{}/{}'.format(root, name)
         unfinished += [(grid, ligand, _root, name, not screen, reference, rescore)]
     mp(dock, unfinished, processes)
@@ -201,7 +201,7 @@ def rmsd(docking, crystal):
 
     docking = glob(docking)
     crystal = glob(crystal)
-
+    print(crystal)
     def docking_to_name(path):
         path = path.split('/')[-1]
         path = path.split('-to-')[0]
@@ -212,12 +212,12 @@ def rmsd(docking, crystal):
         path = path.split('/')[-1]
         path = path.split('_lig')[0]
         return path
-
+    print(docking)
     for docking_path in docking:
         out = docking_path.replace('.maegz', '_rmsd.npy')
         if os.path.exists(out):
             continue
-        
+        print(docking_path)
         name = docking_to_name(docking_path)
         crystal_path = [crystal_path for crystal_path in crystal
                         if crystal_to_name(crystal_path) == name]
@@ -319,8 +319,9 @@ def featurize(root, poseviewers, ifp_version, mcss_version, shape_version,
 
     if not verify:
         features.compute_single_features(poseviewers, processes=processes)
-        features.compute_pair_features(poseviewers, processes=processes,
-                                       mcss=not no_mcss, shape=not no_shape)
+        #commented out for struyct analysis, don't forget to remove later?
+        # features.compute_pair_features(poseviewers, processes=processes,
+                                       # mcss=not no_mcss, shape=not no_shape)
     else:
         _features = ['hbond', 'saltbridge', 'contact']
         if not no_shape:
